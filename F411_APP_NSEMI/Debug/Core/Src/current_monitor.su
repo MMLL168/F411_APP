@@ -1,0 +1,14 @@
+../Core/Src/current_monitor.c:8:13:InitStats	16	static
+../Core/Src/current_monitor.c:26:19:CurrentMonitor_Init	16	static
+../Core/Src/current_monitor.c:51:6:CurrentMonitor_ResetStats	16	static
+../Core/Src/current_monitor.c:79:6:CurrentMonitor_ResetMovingAverage	24	static
+../Core/Src/current_monitor.c:102:6:CurrentMonitor_Update	48	static
+../Core/Src/current_monitor.c:186:6:CurrentMonitor_Display	64	static
+../Core/Src/current_monitor.c:261:6:CurrentMonitor_ManualCalibration	64	static
+../Core/Src/current_monitor.c:320:6:CurrentMonitor_CheckOvercurrent	24	static
+../Core/Src/current_monitor.c:341:7:CurrentMonitor_MovingAverage	24	static
+../Core/Src/current_monitor.c:364:6:CurrentMonitor_CalculatePower	32	static
+../Core/Src/current_monitor.c:389:6:CurrentMonitor_ResetEnergy	16	static
+../Core/Src/current_monitor.c:398:6:CheckAutoReset	32	static
+../Core/Src/current_monitor.c:425:6:CurrentMonitor_UpdateStats	32	static
+../Core/Src/current_monitor.c:474:6:CurrentMonitor_TestFilters	56	static
