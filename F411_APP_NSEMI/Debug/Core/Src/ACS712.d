@@ -36,7 +36,7 @@ Core/Src/ACS712.o: ../Core/Src/ACS712.c ../Core/Inc/acs712.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h \
  ../Core/Inc/current_monitor.h ../Core/Inc/acs712.h ../Core/Inc/ssd1306.h \
- ../Core/Inc/fonts.h
+ ../Core/Inc/ssd1306_conf.h
 ../Core/Inc/acs712.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -77,4 +77,4 @@ Core/Src/ACS712.o: ../Core/Src/ACS712.c ../Core/Inc/acs712.h \
 ../Core/Inc/current_monitor.h:
 ../Core/Inc/acs712.h:
 ../Core/Inc/ssd1306.h:
-../Core/Inc/fonts.h:
+../Core/Inc/ssd1306_conf.h:

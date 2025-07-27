@@ -70,8 +70,8 @@ all: main-build
 main-build: F411_APP_NSEMI.elf secondary-outputs
 
 # Tool invocations
-F411_APP_NSEMI.elf F411_APP_NSEMI.map: $(OBJS) $(USER_OBJS) D:\Work_202506\STM32CubeIDE_Project\0.NSEMI\F411_APP_NSEMI\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "F411_APP_NSEMI.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Work_202506\STM32CubeIDE_Project\0.NSEMI\F411_APP_NSEMI\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F411_APP_NSEMI.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+F411_APP_NSEMI.elf F411_APP_NSEMI.map: $(OBJS) $(USER_OBJS) C:\Work\git\repotitory\F411_APP\F411_APP_NSEMI\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "F411_APP_NSEMI.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Work\git\repotitory\F411_APP\F411_APP_NSEMI\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F411_APP_NSEMI.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

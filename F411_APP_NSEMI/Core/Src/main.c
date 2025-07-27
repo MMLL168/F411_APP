@@ -33,6 +33,7 @@
 #include "acs712.h"
 #include "current_monitor.h"
 #include "ssd1306.h"
+#include "ssd1306_fonts.h"
 #include "handpiece.h"
 /* USER CODE END Includes */
 
@@ -188,43 +189,15 @@ int main(void)
 
   printf("LED Test completed\r\n");
 
-
-  printf("=== STM32 SSD1306 字符測試系統 ===\r\n");
-
-      // 初始化 SSD1306
-      if (ssd1306_Init()) {
-          printf("✓ SSD1306 初始化成功\r\n");
-
-          // 執行所有測試
-          ssd1306_TestAllCharacters();
-          HAL_Delay(1000);
-
-          ssd1306_TestFonts();
-          HAL_Delay(1000);
-
-          // 可選：逐個字符測試（時間較長）
-          // ssd1306_TestIndividualChars();
-
-          // 持續測試
-          ssd1306_ContinuousTest();
-
-      } else {
-          printf("✗ SSD1306 初始化失敗\r\n");
-      }
-      while(1){
-
-      }
-
-
-
-
-
   /* 初始化SSD1306 */
+  char buf[32];
   printf("ssd1306_Init...\r\n");
-  if (ssd1306_Init() != 1) {
-	  printf("ssd1306_Init Fail!!!\r\n");
-      Error_Handler();
-  }
+  ssd1306_Init();
+
+  ssd1306_Fill(Black);
+  ssd1306_SetCursor(0, 0);
+  ssd1306_WriteString("ACS712_Init...", Font_6x8, White);
+  ssd1306_UpdateScreen();
 
   /* 初始化ACS712 */
   printf("ACS712_Init...\r\n");
@@ -236,9 +209,9 @@ int main(void)
 
 
   /* 校準ACS712 */
-  ssd1306_Fill(Black);
-  ssd1306_SetCursor(0, 20);
-  ssd1306_WriteString("Calibrating...", Font_11x18, White);
+  //ssd1306_Fill(Black);
+  ssd1306_SetCursor(0, 8);
+  ssd1306_WriteString("Calibrating...", Font_6x8, White);
   ssd1306_UpdateScreen();
 
   printf("ACS712 Calibrating ...ADC to OFFSET\r\n");
@@ -249,14 +222,25 @@ int main(void)
   }
 
   /* 初始化電流監控器 */
-  printf("CurrentMonitor_Init  ...\r\n");
+  ssd1306_SetCursor(0, 16);
+  ssd1306_WriteString("CurrentMonitor_Init...", Font_6x8, White);
+  ssd1306_UpdateScreen();
+  printf("CurrentMonitor_Init...\r\n");
   if (CurrentMonitor_Init(&monitor, &acs712) != HAL_OK)
   {
 	  printf("CurrentMonitor_Init Fail!!!\r\n");
       Error_Handler();
   }
+  HAL_Delay(300);
+
 
   printf("Zero offset: %.3f V\r\n", acs712.zero_offset);
+
+  sprintf(buf, "Zero offset: %.3fV", acs712.zero_offset);
+  ssd1306_Fill(Black);
+  ssd1306_SetCursor(0, 0); // 設定顯示位置
+  ssd1306_WriteString(buf, Font_6x8, White);
+  ssd1306_UpdateScreen();
   HAL_Delay(100);
 
   // 執行校準
@@ -269,22 +253,23 @@ int main(void)
   while(1)
   {
   	CurrentMonitor_TestFilters(&monitor);
+
+
   }
 
   /* 主迴圈 */
+  ssd1306_SetCursor(0, 16);
+  ssd1306_WriteString("CurrentMonitor Start  ...", Font_6x8, White);
+  ssd1306_UpdateScreen();
   printf("CurrentMonitor Start  ...\r\n");
   while (1)
   {
       CurrentMonitor_Update(&monitor);
       CurrentMonitor_Display(&monitor);
       CheckAutoReset(&monitor);  // 加入這行
+
       HAL_Delay(500);
   }
-
-
-
-
-
 
 
   uint32_t counter = 0;

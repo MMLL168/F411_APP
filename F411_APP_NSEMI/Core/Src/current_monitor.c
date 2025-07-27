@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdbool.h>    // ← 加入這行
 #include "handpiece.h"
+#include "ssd1306.h"
+#include "ssd1306_fonts.h"
 
 // 本地統計初始化函數
 static void InitStats(Current_Stats_t *stats)  // ← 使用 Current_Stats_t
@@ -523,6 +525,23 @@ void CurrentMonitor_TestFilters(Current_Monitor_t *monitor)
             printf("  Noise Reduction: %.1f%%\r\n",
                    (1.0f - fabs(filtered_kalman1)/fabs(raw_current)) * 100.0f);
             printf("\r\n");
+
+            char buf[32];
+            ssd1306_Fill(Black);
+            ssd1306_SetCursor(0, 0); // 設定顯示位置
+          	sprintf(buf, "  Raw:      %.1f mA\r\n", raw_current * 1000.0f);
+            ssd1306_WriteString(buf, Font_6x8, White);
+          	sprintf(buf, "  MovAvg:   %.1f mA\r\n", filtered_ma * 1000.0f);
+            ssd1306_SetCursor(0, 8); // 設定顯示位置
+          	sprintf(buf, "  Raw:      %.1f mA\r\n", raw_current * 1000.0f);
+            ssd1306_WriteString(buf, Font_6x8, White);
+          	sprintf(buf, "  Kalman1:  %.1f mA (Q=0.1, R=5.0)\r\n", filtered_kalman1 * 1000.0f);
+            ssd1306_SetCursor(0, 16); // 設定顯示位置
+          	sprintf(buf, "  Raw:      %.1f mA\r\n", raw_current * 1000.0f);
+            ssd1306_WriteString(buf, Font_6x8, White);
+            ssd1306_UpdateScreen();
+
+
         }
 
         HAL_Delay(100);

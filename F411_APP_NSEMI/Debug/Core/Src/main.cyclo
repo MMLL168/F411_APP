@@ -1,6 +1,6 @@
-../Core/Src/main.c:71:5:_write	1
-../Core/Src/main.c:80:6:Test_Current_Monitor_With_Filters	2
-../Core/Src/main.c:120:6:Menu_Selection	1
-../Core/Src/main.c:139:5:main	2
-../Core/Src/main.c:318:6:SystemClock_Config	3
-../Core/Src/main.c:372:6:Error_Handler	1
+../Core/Src/main.c:72:5:_write	1
+../Core/Src/main.c:81:6:Test_Current_Monitor_With_Filters	2
+../Core/Src/main.c:121:6:Menu_Selection	1
+../Core/Src/main.c:140:5:main	4
+../Core/Src/main.c:303:6:SystemClock_Config	3
+../Core/Src/main.c:357:6:Error_Handler	1
